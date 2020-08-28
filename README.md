@@ -1,1 +1,1 @@
-This is the source code for the Sonic 1 TTS remake
+This is the source code for Sonic Debut.
