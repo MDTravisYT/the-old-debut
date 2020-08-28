@@ -1,0 +1,80 @@
+//var declaration
+btnNow = 0; //current button state
+btnLast = 0; //previous button state
+btnTime = 0; //number of steps that current button state has persisted
+btnTotal = 0; //number of steps that the entire demo lasts
+btnABC = 0; //temp var for ABC button conversion
+player2 = argument2; //whether we're reading player 2's data or not
+
+src = file_bin_open(argument0,0); //open the source file
+
+file_bin_seek(src,$40); //skip to where the input data begins
+
+trg = file_bin_open(argument1,1); //open the target file
+
+file_bin_rewrite(trg); //clear the target file for rewrite
+
+file_bin_write_byte(trg,0); //start with no button state
+
+//conversion loop
+do
+{
+  btnLast = btnNow; //store current button state
+  
+  if (player2) file_bin_read_byte(src); //if we're reading player 2, skip one byte (player 1's data)
+  btnNow = file_bin_read_byte(src); //read one byte from src file
+  btnNow = $FF-btnNow; //convert to proper format ($FE = $01, etc)
+  
+  //except, A B and C buttons don't line up, so fix them manually
+  btnABC = 0;
+  if (btnNow & $10)
+  {
+    btnNow ^= $10; //A is active. Remove it from the current button state temporarily.
+    btnABC |= $40; //'or' the proper value for A to the temp var
+  }
+  if (btnNow & $20)
+  {
+    btnNow ^= $20; //B is active. Remove it from the current button state temporarily.
+    btnABC |= $10; //'or' the proper value for B to the temp var
+  }
+  if (btnNow & $40)
+  {
+    btnNow ^= $40; //C is active. Remove it from the current button state temporarily.
+    btnABC |= $20; //'or' the proper value for C to the temp var
+  }
+  btnNow |= btnABC; //'or' the temp var to the current button state, completing the conversion.
+  
+  if (btnNow != btnLast)
+  {
+    file_bin_write_byte(trg,btnTime); //store time value
+    file_bin_write_byte(trg,btnNow); //store button state
+    btnTime = 0; //reset button time
+  }
+  else
+  {
+    btnTime += 1; //inc button time
+    if (btnTime == $FF)
+    {
+      file_bin_write_byte(trg,btnTime); //store time value
+      file_bin_write_byte(trg,btnNow); //store button state
+      btnTime = 0; //reset button time
+    }
+  }
+  
+  //skip two bytes in src (other controllers)
+  file_bin_read_byte(src);
+  if (!player2) file_bin_read_byte(src); //only skip 2 if we're reading player 1
+  btnTotal += 1;
+}
+until file_bin_position(src) == file_bin_size(src);
+
+//padding for trg file
+while (file_bin_position(trg) mod 16)
+{
+  file_bin_write_byte(trg,$00);
+}
+
+results();
+
+file_bin_close(src); //close files
+file_bin_close(trg);

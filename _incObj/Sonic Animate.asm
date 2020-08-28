@@ -155,6 +155,7 @@ Sonic_Animate:
 ; ===========================================================================
 
 @push:
+		rts
 		move.w	obInertia(a0),d2 ; get Sonic's speed
 		bmi.s	@negspeed
 		neg.w	d2

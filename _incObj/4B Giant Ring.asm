@@ -23,7 +23,7 @@ GRing_Main:	; Routine 0
 		bpl.s	GRing_Animate
 		cmpi.b	#6,(v_emeralds).w ; do you have 6 emeralds?
 		beq.w	GRing_Delete	; if yes, branch
-		cmpi.w	#50,(v_rings).w	; do you have at least 50 rings?
+		cmpi.w	#0,(v_rings).w	; do you have at least 50 rings?
 		bcc.s	GRing_Okay	; if yes, branch
 		rts	
 ; ===========================================================================
@@ -56,6 +56,7 @@ GRing_Collect:	; Routine 4
 
 GRing_PlaySnd:
 		sfx	sfx_GiantRing,0,0,0	; play giant ring sound
+		sfx	$90,0,0,0	; play giant ring sound
 		bra.s	GRing_Animate
 ; ===========================================================================
 

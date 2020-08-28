@@ -36,8 +36,8 @@ loc_628E:
 ; ---------------------------------------------------------------------------
 ; Offset index for background layer deformation	code
 ; ---------------------------------------------------------------------------
-Deform_Index:	dc.w Deform_LZ-Deform_Index, Deform_GHZ-Deform_Index
-		dc.w Deform_MZ-Deform_Index, Deform_SLZ-Deform_Index
+Deform_Index:	dc.w Deform_LZ-Deform_Index, Deform_LZ-Deform_Index
+		dc.w Deform_MZ-Deform_Index, Deform_LZ-Deform_Index
 		dc.w Deform_SYZ-Deform_Index, Deform_SBZ-Deform_Index
 		zonewarning Deform_Index,2
 		dc.w Deform_LZ-Deform_Index
@@ -309,29 +309,6 @@ loc_64FE:
 
 
 Deform_SYZ:
-		move.w	(v_scrshiftx).w,d4
-		ext.l	d4
-		asl.l	#6,d4
-		move.w	($FFFFF73C).w,d5
-		ext.l	d5
-		asl.l	#4,d5
-		move.l	d5,d1
-		asl.l	#1,d5
-		add.l	d1,d5
-		bsr.w	ScrollBlock1
-		move.w	(v_bgscreenposy).w,(v_bgscrposy_dup).w
-		lea	(v_hscrolltablebuffer).w,a1
-		move.w	#223,d1
-		move.w	(v_screenposx).w,d0
-		neg.w	d0
-		swap	d0
-		move.w	(v_bgscreenposx).w,d0
-		neg.w	d0
-
-loc_653C:
-		move.l	d0,(a1)+
-		dbf	d1,loc_653C
-		rts	
 ; End of function Deform_SYZ
 
 ; ---------------------------------------------------------------------------

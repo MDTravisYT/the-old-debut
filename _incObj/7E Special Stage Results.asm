@@ -3,7 +3,7 @@
 ; ---------------------------------------------------------------------------
 
 SSResult:
-		move.w	#$04,	$FFFF600
+	;	move.w	#$04,	$FFFF600
 		moveq	#0,d0
 		move.b	obRoutine(a0),d0
 		move.w	SSR_Index(pc,d0.w),d1
@@ -79,8 +79,8 @@ loc_C85A:
 		move.w	obX(a0),d0
 		bmi.s	locret_C86A
 		cmpi.w	#$200,d0	; has item moved beyond	$200 on	x-axis?
-;		bcc.s	locret_C86A	; if yes, branch
-;		bra.w	DisplaySprite
+		bcc.s	locret_C86A	; if yes, branch
+		bra.w	DisplaySprite
 ; ===========================================================================
 
 locret_C86A:
@@ -100,11 +100,11 @@ SSR_Wait:	; Routine 4, 8, $C, $10
 		addq.b	#2,obRoutine(a0)
 
 SSR_Display:
-;		bra.w	DisplaySprite
+		bra.w	DisplaySprite
 ; ===========================================================================
 
 SSR_RingBonus:	; Routine 6
-;		bsr.w	DisplaySprite
+		bsr.w	DisplaySprite
 		move.b	#1,(f_endactbonus).w ; set ring bonus update flag
 		tst.w	(v_ringbonus).w	; is ring bonus	= zero?
 		beq.s	loc_C8C4	; if yes, branch

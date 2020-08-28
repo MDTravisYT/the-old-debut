@@ -1,26 +1,46 @@
 Operating system: Microsoft Windows NT 6.2.9200.0
-Opening INI file "D:\Disassembly\BetaSonic in Sonic 1\sonic tts\SonPLN.ini"...
+Opening INI file "D:\Disassembly\BetaSonic in Sonic 1\sonicth tts demos\SonPLN.ini"...
 Game type is S1.
-Loading Title Screen Logo...
-Loading plane mappings from file "tilemaps/Title Screen.bin", using compression Enigma...
-Loading palette file "palette/Title Screen.bin"...
-Source: 0 Destination: 0 Length: 16
-Loading 8x8 tiles from file "artnem/Title Screen Foreground.bin", using compression Nemesis...
-Mappings data size does not match given width/height. Expected: 2240 (40x28*2) Actual: 1496.
+Loading SEGA Logo...
+Loading plane mappings from file "tilemaps/Sega Logo 2.bin", using compression Enigma...
+Loading palette file "palette/Sega2.bin"...
+Source: 16 Destination: 0 Length: 64
+Loading 8x8 tiles from file "artnem/Sega Logo 2.bin", using compression Nemesis...
 Load completed.
-Opening INI file "D:\Disassembly\BetaSonic in Sonic 1\sonic tts\SonPLN.ini"...
-Game type is S1.
-System.NullReferenceException: Object reference not set to an instance of an object.
-   at SonicRetro.SonLVL.PatternIndexSearchControl.UpdateStuff() in E:\Programs\SonLVL\SonPLN\PatternIndexSearchControl.cs:line 22
-   at SonicRetro.SonLVL.ReplaceTilesDialog.ReplaceBlockTilesDialog_VisibleChanged(Object sender, EventArgs e) in E:\Programs\SonLVL\SonPLN\ReplaceTilesDialog.cs:line 17
-   at System.Windows.Forms.Control.OnVisibleChanged(EventArgs e)
-   at System.Windows.Forms.ScrollableControl.OnVisibleChanged(EventArgs e)
-   at System.Windows.Forms.Form.OnVisibleChanged(EventArgs e)
-   at System.Windows.Forms.Control.WmShowWindow(Message& m)
-   at System.Windows.Forms.Control.WndProc(Message& m)
-   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
-   at System.Windows.Forms.Form.WmShowWindow(Message& m)
+Loading SEGA Logo...
+Loading plane mappings from file "tilemaps/Sega Logo 2.bin", using compression Enigma...
+Loading 8x8 tiles from file "artnem/Sega Logo 2.bin", using compression Nemesis...
+Loading palette file "palette/Sega2.bin"...
+Source: 16 Destination: 0 Length: 64
+Load completed.
+Unable to write file "artnem/Sega Logo 2.bin" with compression Nemesis:
+System.AggregateException: One or more errors occurred. ---> System.IO.IOException: The process cannot access the file 'D:\Disassembly\BetaSonic in Sonic 1\sonicth tts demos\artnem\Sega Logo 2.bin' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at SonicRetro.KensSharp.Nemesis.Compress(Byte[] sourceData, String destinationFilePath)
+   at SonicRetro.SonLVL.API.Compression.Compress(Byte[] file, String destination, CompressionType cmp) in E:\Programs\SonLVL\SonLVLAPI\Compression.cs:line 110
+   at SonicRetro.SonLVL.SonPLN.MainForm.SaveLevelTiles() in E:\Programs\SonLVL\SonPLN\MainForm.cs:line 585
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.FastWaitAll(Task[] tasks)
+   at System.Threading.Tasks.Parallel.Invoke(ParallelOptions parallelOptions, Action[] actions)
+   at SonicRetro.SonLVL.SonPLN.MainForm.saveToolStripMenuItem_Click(Object sender, EventArgs e) in E:\Programs\SonLVL\SonPLN\MainForm.cs:line 566
+   at SonicRetro.SonLVL.SonPLN.MainForm.MainForm_FormClosing(Object sender, FormClosingEventArgs e) in E:\Programs\SonLVL\SonPLN\MainForm.cs:line 157
+   at System.Windows.Forms.Form.OnFormClosing(FormClosingEventArgs e)
+   at System.Windows.Forms.Form.WmClose(Message& m)
    at System.Windows.Forms.Form.WndProc(Message& m)
    at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
    at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
    at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+---> (Inner Exception #0) System.IO.IOException: The process cannot access the file 'D:\Disassembly\BetaSonic in Sonic 1\sonicth tts demos\artnem\Sega Logo 2.bin' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at SonicRetro.KensSharp.Nemesis.Compress(Byte[] sourceData, String destinationFilePath)
+   at SonicRetro.SonLVL.API.Compression.Compress(Byte[] file, String destination, CompressionType cmp) in E:\Programs\SonLVL\SonLVLAPI\Compression.cs:line 110
+   at SonicRetro.SonLVL.SonPLN.MainForm.SaveLevelTiles() in E:\Programs\SonLVL\SonPLN\MainForm.cs:line 585
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()<---
+

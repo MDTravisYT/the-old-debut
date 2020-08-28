@@ -1,2 +1,3 @@
 Warning: Specified size exceeds map size.
 Field has been trimmed vertically.
+Could not read palette file.

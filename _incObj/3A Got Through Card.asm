@@ -103,9 +103,10 @@ Got_TimeBonus:	; Routine 6
 		move.b	#1,(f_endactbonus).w ; set time/ring bonus update flag
 		moveq	#0,d0
 		tst.w	(v_timebonus).w	; is time bonus	= zero?
-		beq.s	Got_RingBonus	; if yes, branch
-		addi.w	#10,d0		; add 10 to score
+		bne.s	Got_RingBonus	; skip time
+		addi.w	#0,d0		; add 10 to score
 		subi.w	#10,(v_timebonus).w ; subtract 10 from time bonus
+		rts
 
 Got_RingBonus:
 		tst.w	(v_ringbonus).w	; is ring bonus	= zero?
@@ -149,6 +150,7 @@ Got_NextLevel:	; Routine $A
 		move.w	d0,(v_zone).w	; set level number
 		tst.w	d0
 		bne.s	Got_ChkSS
+		move.b	#id_Sega,(v_gamemode).w
 		bra.s	Got_Display2
 ; ===========================================================================
 
@@ -169,7 +171,42 @@ Got_Display2:
 ; ---------------------------------------------------------------------------
 ; Level	order array
 ; ---------------------------------------------------------------------------
-LevelOrder:	incbin	"misc\Level Order.bin"
+LevelOrder:
+		; Green Hill Zone
+		dc.b id_LZ, 0	; Act 1
+		dc.b id_GHZ, 2	; Act 2
+		dc.b id_LZ, 0	; Act 3
+		dc.b 0, 0
+
+		; Labyrinth Zone
+		dc.b id_SBZ, 1	; Act 1
+		dc.b id_LZ, 2	; Act 2
+		dc.b id_LZ, 3	; Act 3
+		dc.b id_MZ, 1	; Act 4
+
+		; Marble Zone
+		dc.b id_MZ, 1	; Act 1
+		dc.b id_MZ, 2	; Act 2
+		dc.b id_SLZ, 0	; Act 3
+		dc.b 0, 0
+
+		; Star Light Zone
+		dc.b id_SLZ, 1	; Act 1
+		dc.b id_SLZ, 2	; Act 2
+		dc.b id_SYZ, 0	; Act 3
+		dc.b 0, 0
+
+		; Spring Yard Zone
+		dc.b id_SYZ, 1	; Act 1
+		dc.b id_SYZ, 2	; Act 2
+		dc.b id_SBZ, 0	; Act 3
+		dc.b 0, 0
+
+		; Scrap Brain Zone
+		even	; Act 1
+		dc.b id_SBZ, 2	; Act 2
+		dc.b 0, 0	; Final Zone
+		dc.b 0, 0
 		even
 		zonewarning LevelOrder,8
 ; ===========================================================================
@@ -218,14 +255,17 @@ Got_Config:	dc.w 4,		$124,	$BC			; "SONIC HAS"
 		dc.w -$120,	$120,	$D0			; "PASSED"
 		dc.b 				2,	1
 
-		dc.w $520,	$FFF,	$FFF			; score
+		dc.w $40C,	$14C,	$D6			; "ACT" 1/2/3
+		dc.b 				2,	6
+
+		dc.w $520,	$120,	$EC			; score
 		dc.b 				2,	2
 
-		dc.w $540,	$FFF,	$FFF			; time bonus
+		dc.w $540,	$120,	$FFC			; time bonus
 		dc.b 				2,	3
 
-		dc.w $560,	$FFF,	$FFF			; ring bonus
+		dc.w $560,	$120,	$FC			; ring bonus
 		dc.b 				2,	4
 
-		dc.w $20C,	$FFF,	$FFF			; oval
+		dc.w $20C,	$14C,	$CC			; oval
 		dc.b 				2,	5

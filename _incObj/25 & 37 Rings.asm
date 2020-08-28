@@ -87,7 +87,7 @@ loc_9BBA:
 		move.w	obX(a0),$32(a1)
 		move.w	d3,obY(a1)	; set y-axis position based on d3
 		move.l	#Map_Ring,obMap(a1)
-		move.w	#$27B2,obGfx(a1)
+		move.w	#$27A8,obGfx(a1)
 		move.b	#4,obRender(a1)
 		move.b	#2,obPriority(a1)
 		move.b	#$47,obColType(a1)
@@ -140,11 +140,11 @@ CollectRing:
 		addq.w	#1,(v_rings).w	; add 1 to rings
 		ori.b	#1,(f_ringcount).w ; update the rings counter
 		move.w	#sfx_Ring,d0	; play ring sound
-		cmpi.w	#100,(v_rings).w ; do you have < 100 rings?
+		cmpi.w	#50,(v_rings).w ; do you have < 100 rings?
 		bcs.s	@playsnd	; if yes, branch
 		bset	#1,(v_lifecount).w ; update lives counter
 		beq.s	@got100
-		cmpi.w	#200,(v_rings).w ; do you have < 200 rings?
+		cmpi.w	#100,(v_rings).w ; do you have < 200 rings?
 		bcs.s	@playsnd	; if yes, branch
 		bset	#2,(v_lifecount).w ; update lives counter
 		bne.s	@playsnd
@@ -206,7 +206,7 @@ RLoss_Count:	; Routine 0
 		dbf	d5,@loop	; repeat for number of rings (max 31)
 
 @resetcounter:
-		move.w	#0,(v_rings).w	; reset number of rings to zero
+		move.l	d0,(v_time).w	; reset number of hearts to zero
 		move.b	#$80,(f_ringcount).w ; update ring counter
 		move.b	#0,(v_lifecount).w
 ;		sfx	sfx_RingLoss,0,0,0	; play ring loss sound

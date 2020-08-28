@@ -19,7 +19,7 @@ TSon_Main:	; Routine 0
 		move.w	#$F8,obX(a0)
 		move.w	#$DE,obScreenY(a0) ; position is fixed to screen
 		move.l	#Map_TSon,obMap(a0)
-		move.w	#$2300,obGfx(a0)
+		move.w	#$2338,obGfx(a0)
 		move.b	#1,obPriority(a0)
 		move.b	#29,obDelayAni(a0) ; set time delay to 0.5 seconds
 		lea	(Ani_TSon).l,a1

@@ -26,6 +26,7 @@ PCycle_Index:	dc.w PCycle_GHZ-PCycle_Index
 		dc.w PalCycle_SBZ-PCycle_Index
 		zonewarning PCycle_Index,2
 		dc.w PCycle_GHZ-PCycle_Index	; Ending
+		dc.w PalCycle_USZ-PCycle_Index
 
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
@@ -264,3 +265,7 @@ loc_1B52:
 locret_1B64:
 		rts	
 ; End of function PalCycle_SBZ
+
+PalCycle_USZ:
+		rts
+; End of function PalCycle_USZ

@@ -40,15 +40,15 @@ LevelSizeLoad:
 ; ---------------------------------------------------------------------------
 LevelSizeArray:
 		; GHZ
-		dc.w $0004, $0000, $0880, $0000, $0300, $F000
-		dc.w $0004, $0000, $0880, $0000, $0300, $F000
+		dc.w $0004, $0000, $13E8, $0000, $0300, $F000
+		dc.w $0004, $0000, $3F15, $0000, $0700, $0060
 		dc.w $0004, $0000, $2960, $0000, $0300, $0060
 		dc.w $0004, $0000, $2ABF, $0000, $0300, $0060
 		; LZ
 		dc.w $0004, $0000, $19BF, $0000, $0530, $0060
 		dc.w $0004, $0000, $10AF, $0000, $0720, $0060
 		dc.w $0004, $0000, $202F, $FF00, $0800, $0060
-		dc.w $0004, $0000, $20BF, $0000, $0720, $0060
+		dc.w $0004, $0000, $1610, $0000, $0720, $0060
 		; MZ
 		dc.w $0004, $0000, $17BF, $0000, $01D0, $0060
 		dc.w $0004, $0000, $17BF, $0000, $0520, $0060
@@ -73,6 +73,11 @@ LevelSizeArray:
 		; Ending
 		dc.w $0004, $0000, $0500, $0110, $0110, $0060
 		dc.w $0004, $0000, $0DC0, $0110, $0110, $0060
+		dc.w $0004, $0000, $2FFF, $0000, $0320, $0060
+		dc.w $0004, $0000, $2FFF, $0000, $0320, $0060
+		; USZ
+		dc.w $0004, $0000, $2FFF, $0000, $0320, $0060
+		dc.w $0004, $0000, $2FFF, $0000, $0320, $0060
 		dc.w $0004, $0000, $2FFF, $0000, $0320, $0060
 		dc.w $0004, $0000, $2FFF, $0000, $0320, $0060
 
@@ -145,7 +150,7 @@ SetScreen:
 		moveq	#0,d0
 		move.b	(v_zone).w,d0
 		lsl.b	#2,d0
-		move.l	LoopTileNums(pc,d0.w),(v_256loop1).w
+	;	move.l	LoopTileNums(pc,d0.w),(v_256loop1).w
 		bra.w	LevSz_LoadScrollBlockSize
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
@@ -251,10 +256,9 @@ loc_6206:
 
 ; ===========================================================================
 BgScroll_Index:	dc.w BgScroll_GHZ-BgScroll_Index, BgScroll_LZ-BgScroll_Index
-		dc.w BgScroll_MZ-BgScroll_Index, BgScroll_SLZ-BgScroll_Index
+		dc.w BgScroll_MZ-BgScroll_Index, BgScroll_LZ-BgScroll_Index
 		dc.w BgScroll_SYZ-BgScroll_Index, BgScroll_SBZ-BgScroll_Index
-		zonewarning BgScroll_Index,2
-		dc.w BgScroll_End-BgScroll_Index
+		dc.w BgScroll_End-BgScroll_Index, BgScroll_USZ-BgScroll_Index
 ; ===========================================================================
 
 BgScroll_GHZ:
@@ -306,4 +310,7 @@ BgScroll_End:
 		move.w	#$1E,(v_bgscreenposy).w
 		move.w	#-$40,(v_bg2screenposx).w
 		move.w	#$1E,(v_bg2screenposy).w
+		rts
+		
+BgScroll_USZ:
 		rts

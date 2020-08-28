@@ -71,9 +71,9 @@ SonAni_Spring:	dc.b $2F, $40, afChange, id_Walk
 		even
 SonAni_Hang:	dc.b 4,	$41, $42, afEnd
 		even
-SonAni_Leap1:	dc.b $F, $43, $43, $43,	afBack, 1
+SonAni_Leap1:	dc.b $F, $17, $17, $17,	afBack, 1
 		even
-SonAni_Leap2:	dc.b $F, $43, $44, afBack, 1
+SonAni_Leap2:	dc.b $F, $17, $18, afBack, 1
 		even
 SonAni_Surf:	dc.b $3F, $49, afEnd
 		even

@@ -16,7 +16,7 @@ Signpost:
 Sign_Index:	dc.w Sign_Main-Sign_Index
 		dc.w Sign_Touch-Sign_Index
 		dc.w Sign_Spin-Sign_Index
-		dc.w Sign_SonicRun-Sign_Index
+		dc.w GotThroughAct-Sign_Index
 		dc.w Sign_Exit-Sign_Index
 
 spintime:	equ $30		; time for signpost to spin
@@ -26,10 +26,10 @@ sparkle_id:	equ $34		; counter to keep track of sparkles
 
 Sign_Main:	; Routine 0
 		addq.b	#2,obRoutine(a0)
-;		move.l	#Map_Sign,obMap(a0)
-;		move.w	#$680,obGfx(a0)
-;		move.b	#4,obRender(a0)
-;		move.b	#$18,obActWid(a0)
+		move.l	#Map_Sign,obMap(a0)
+		move.w	#$680,obGfx(a0)
+		move.b	#4,obRender(a0)
+		move.b	#$18,obActWid(a0)
 		move.b	#4,obPriority(a0)
 
 Sign_Touch:	; Routine 2
@@ -38,11 +38,12 @@ Sign_Touch:	; Routine 2
 		bcs.s	@notouch
 		cmpi.w	#$20,d0		; is Sonic within $20 pixels of	the signpost?
 		bcc.s	@notouch	; if not, branch
-        move.b  #id_Ending,(v_gamemode).w
-		music	$A1,0,0,0	; play signpost sound
+		move.b  #1,($FFFFF7AA).w ; Lock the screen
+		music	sfx_Signpost,0,0,0	; play signpost sound
 		clr.b	(f_timecount).w	; stop time counter
 		move.w	(v_limitright2).w,(v_limitleft2).w ; lock screen position
 		addq.b	#2,obRoutine(a0)
+		move.b	#0,(f_gogglecheck).w ; move 0 to the goggle check
 
 	@notouch:
 		rts	
@@ -97,27 +98,6 @@ Sign_SparkPos:	dc.b -$18,-$10		; x-position, y-position
 		dc.b  $18, $10
 ; ===========================================================================
 
-Sign_SonicRun:	; Routine 6
-        move.b  #id_Ending,(v_gamemode).w
-		tst.w	(v_debuguse).w	; is debug mode	on?
-		bne.w	locret_ECEE	; if yes, branch
-		btst	#1,(v_player+obStatus).w
-		bne.s	loc_EC70
-		move.b	#1,(f_lockctrl).w ; lock controls
-		move.w	#btnR<<8,(v_jpadhold2).w ; make Sonic run to the right
-
-	loc_EC70:
-		tst.b	(v_player).w
-		beq.s	loc_EC86
-		move.w	(v_player+obX).w,d0
-		move.w	(v_limitright2).w,d1
-		addi.w	#$128,d1
-		cmp.w	d1,d0
-		bcs.s	locret_ECEE
-
-	loc_EC86:
-		addq.b	#2,obRoutine(a0)
-
 
 ; ---------------------------------------------------------------------------
 ; Subroutine to	set up bonuses at the end of an	act
@@ -127,13 +107,14 @@ Sign_SonicRun:	; Routine 6
 
 
 GotThroughAct:
+		move.b  #1,($FFFFF5C0).w ; Set victory animation flag
 		tst.b	(v_objspace+$5C0).w
 		bne.s	locret_ECEE
 		move.w	(v_limitright2).w,(v_limitleft2).w
 		clr.b	(v_invinc).w	; disable invincibility
 		clr.b	(f_timecount).w	; stop time counter
 		move.b	#id_GotThroughCard,(v_objspace+$5C0).w
-		moveq	#plcid_TitleCard,d0
+		moveq	#plcid_TitleCard2,d0
 		jsr	(NewPLC).l	; load title card patterns
 		move.b	#1,(f_endactbonus).w
 		moveq	#0,d0
@@ -154,7 +135,7 @@ GotThroughAct:
 		move.w	(v_rings).w,d0	; load number of rings
 		mulu.w	#10,d0		; multiply by 10
 		move.w	d0,(v_ringbonus).w ; set ring bonus
-		sfx	bgm_GotThrough,0,0,0	; play "Sonic got through" music
+		sfx	$8B,0,0,0	; play "Sonic got through" music
 
 locret_ECEE:
 		rts	

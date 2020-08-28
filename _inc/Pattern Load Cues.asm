@@ -20,8 +20,10 @@ ptr_PLC_SYZ:		dc.w PLC_SYZ-ArtLoadCues
 ptr_PLC_SYZ2:		dc.w PLC_SYZ2-ArtLoadCues
 ptr_PLC_SBZ:		dc.w PLC_SBZ-ArtLoadCues
 ptr_PLC_SBZ2:		dc.w PLC_SBZ2-ArtLoadCues
+ptr_PLC_IMZ:		dc.w PLC_IMZ-ArtLoadCues
 			zonewarning PLC_Levels,4
 ptr_PLC_TitleCard:	dc.w PLC_TitleCard-ArtLoadCues
+ptr_PLC_TitleCard2:	dc.w PLC_TitleCard2-ArtLoadCues
 ptr_PLC_Boss:		dc.w PLC_Boss-ArtLoadCues
 ptr_PLC_Signpost:	dc.w PLC_Signpost-ArtLoadCues
 ptr_PLC_Warp:		dc.w PLC_Warp-ArtLoadCues
@@ -52,8 +54,8 @@ PLC_Main:	dc.w ((PLC_Mainend-PLC_Main-2)/6)-1
 		plcm	Nem_Lamp, $F400		; lamppost
 		plcm	Nem_Hud, $D940		; HUD
 		plcm	Nem_Lives, $FA80	; lives	counter
-		plcm	Nem_Ring, $F640 	; rings
-		plcm	Nem_Points, $F2E0	; points from enemy
+		plcm	Nem_Ring, $F500 	; rings
+;		plcm	Nem_Points, $F2E0	; points from enemy
 	PLC_Mainend:
 ; ---------------------------------------------------------------------------
 ; Pattern load cues - standard block 2
@@ -67,7 +69,7 @@ PLC_Main2:	dc.w ((PLC_Main2end-PLC_Main2-2)/6)-1
 ; Pattern load cues - explosion
 ; ---------------------------------------------------------------------------
 PLC_Explode:	dc.w ((PLC_Explodeend-PLC_Explode-2)/6)-1
-		plcm	Nem_Explode, $B400	; explosion
+;		plcm	Nem_Explode, $B400	; explosion
 	PLC_Explodeend:
 ; ---------------------------------------------------------------------------
 ; Pattern load cues - game/time	over
@@ -81,32 +83,35 @@ PLC_GameOver:	dc.w ((PLC_GameOverend-PLC_GameOver-2)/6)-1
 PLC_GHZ:	dc.w ((PLC_GHZ2-PLC_GHZ-2)/6)-1
 		plcm	Nem_GHZ, 0		; GHZ main patterns
 	;	plcm	Nem_Stalk, $6B00	; flower stalk
+		plcm	Nem_Buzz, $8880		; buzz bomber enemy
+		plcm	Nem_Chopper, $8F60	; chopper enemy
+		plcm	Nem_Newtron, $9360	; newtron enemy
+		plcm	Nem_Motobug, $9E00	; motobug enemy
+		plcm	Nem_Spikes, $A360	; spikes
+		plcm	Nem_HSpring, $A460	; horizontal spring
+		plcm	Nem_VSpring, $A660	; vertical spring
 		plcm	Nem_Burrobot, $94C0	; blue guy
-		plcm	Nem_Crabmeat, $8000	; crabmeat enemy
-	;	plcm	Nem_Buzz, $8880		; buzz bomber enemy
-	;	plcm	Nem_Chopper, $8F60	; chopper enemy
-	;	plcm	Nem_Newtron, $9360	; newtron enemy
-	;	plcm	Nem_Motobug, $9E00	; motobug enemy
-	;	plcm	Nem_Spikes, $A360	; spikes
-	;	plcm	Nem_HSpring, $A460	; horizontal spring
-	;	plcm	Nem_VSpring, $A660	; vertical spring
+		plcm	Nem_Crabmeat, $8840 ; bush
+		plcm	Nem_BallHog, $56E0	; ball hog enemy
 
 PLC_GHZ2:	dc.w ((PLC_GHZ2end-PLC_GHZ2-2)/6)-1
+		plcm	Nem_Swing, $7000	; swinging platform
+		plcm	Nem_Bridge, $71C0	; bridge
+		plcm	Nem_SpikePole, $7300	; spiked pole
+		plcm	Nem_Ball, $7540		; giant	ball
+		plcm	Nem_GhzWall1, $A1E0	; breakable wall
+		plcm	Nem_GhzWall2, $6980	; normal wall
 		plcm	Nem_Pylon, $7980	; foreground trees and stuff
-;		plcm	Nem_Swing, $7000	; swinging platform
-;		plcm	Nem_Bridge, $71C0	; bridge
-;		plcm	Nem_SpikePole, $7300	; spiked pole
-;		plcm	Nem_Ball, $7540		; giant	ball
-;		plcm	Nem_GhzWall1, $A1E0	; breakable wall
-;		plcm	Nem_GhzWall2, $6980	; normal wall
+		plcm	Nem_PplRock, $A0C0	; purple rock
+	;	plcm	Nem_Motobug, $9E00	; motobug enemy
 	PLC_GHZ2end:
 ; ---------------------------------------------------------------------------
 ; Pattern load cues - Labyrinth
 ; ---------------------------------------------------------------------------
 PLC_LZ:		dc.w ((PLC_LZ2-PLC_LZ-2)/6)-1
 		plcm	Nem_LZ,0		; LZ main patterns
-		plcm	Nem_LzBlock1, $3C00	; block
-		plcm	Nem_LzBlock2, $3E00	; blocks
+;		plcm	Nem_LzBlock1, $3C00	; block
+;		plcm	Nem_LzBlock2, $3E00	; blocks
 		plcm	Nem_Splash, $4B20	; waterfalls and splash
 		plcm	Nem_Water, $6000	; water	surface
 		plcm	Nem_LzSpikeBall, $6200	; spiked ball
@@ -165,8 +170,8 @@ PLC_SLZ:	dc.w ((PLC_SLZ2-PLC_SLZ-2)/6)-1
 		plcm	Nem_Bomb, $8000		; bomb enemy
 		plcm	Nem_Orbinaut, $8520	; orbinaut enemy
 		plcm	Nem_MzFire, $9000	; fireballs
-		plcm	Nem_SlzBlock, $9C00	; block
-		plcm	Nem_SlzWall, $A260	; breakable wall
+;		plcm	Nem_SlzBlock, $9C00	; block
+;		plcm	Nem_SlzWall, $A260	; breakable wall
 		plcm	Nem_Spikes, $A360	; spikes
 		plcm	Nem_HSpring, $A460	; horizontal spring
 		plcm	Nem_VSpring, $A660	; vertical spring
@@ -231,12 +236,42 @@ PLC_SBZ2:	dc.w ((PLC_SBZ2end-PLC_SBZ2-2)/6)-1
 		plcm	Nem_HSpring, $A460	; horizontal spring
 		plcm	Nem_VSpring, $A660	; vertical spring
 	PLC_SBZ2end:
+	
+PLC_IMZ:	dc.w ((PLC_IMZ2-PLC_IMZ-2)/6)-1
+		plcm	Nem_IMZ, 0		; GHZ main patterns
+		plcm	Nem_Stalk, $6B00	; flower stalk
+		plcm	Nem_Buzz, $8880		; buzz bomber enemy
+		plcm	Nem_Chopper, $8F60	; chopper enemy
+		plcm	Nem_Newtron, $9360	; newtron enemy
+		plcm	Nem_Motobug, $9E00	; motobug enemy
+		plcm	Nem_Spikes, $A360	; spikes
+		plcm	Nem_HSpring, $A460	; horizontal spring
+		plcm	Nem_VSpring, $A660	; vertical spring
+		plcm	Nem_Burrobot, $94C0	; blue guy
+		plcm	Nem_Crabmeat, $8840 ; bush
+		plcm	Nem_BallHog, $56E0	; ball hog enemy
+
+PLC_IMZ2:	dc.w ((PLC_IMZ2end-PLC_IMZ2-2)/6)-1
+		plcm	Nem_Swing, $7000	; swinging platform
+		plcm	Nem_Bridge, $71C0	; bridge
+		plcm	Nem_SpikePole, $7300	; spiked pole
+		plcm	Nem_Ball, $7540		; giant	ball
+		plcm	Nem_GhzWall1, $A1E0	; breakable wall
+		plcm	Nem_GhzWall2, $6980	; normal wall
+		plcm	Nem_Pylon, $7980	; foreground trees and stuff
+		plcm	Nem_PplRock, $A0C0	; purple rock
+		plcm	Nem_Motobug, $9E00	; motobug enemy
+	PLC_IMZ2end:
 ; ---------------------------------------------------------------------------
 ; Pattern load cues - title card
 ; ---------------------------------------------------------------------------
 PLC_TitleCard:	dc.w ((PLC_TitleCardend-PLC_TitleCard-2)/6)-1
 		plcm	Nem_TitleCard, $B000
 	PLC_TitleCardend:
+	
+PLC_TitleCard2:	dc.w ((PLC_TitleCard2end-PLC_TitleCard2-2)/6)-1
+		plcm	Nem_TitleCard2, $B000
+	PLC_TitleCard2end:
 ; ---------------------------------------------------------------------------
 ; Pattern load cues - act 3 boss
 ; ---------------------------------------------------------------------------
@@ -426,3 +461,4 @@ plcid_Ending:		equ (ptr_PLC_Ending-ArtLoadCues)/2	; $1C
 plcid_TryAgain:		equ (ptr_PLC_TryAgain-ArtLoadCues)/2	; $1D
 plcid_EggmanSBZ2:	equ (ptr_PLC_EggmanSBZ2-ArtLoadCues)/2	; $1E
 plcid_FZBoss:		equ (ptr_PLC_FZBoss-ArtLoadCues)/2	; $1F
+plcid_TitleCard2:	equ (ptr_PLC_TitleCard2-ArtLoadCues)/2	; $10

@@ -21,7 +21,7 @@ dbug:	macro map,object,subtype,frame,vram
 	dc.w (@GHZend-@GHZ-2)/8
 
 ;		mappings	object		subtype	frame	VRAM setting
-	dbug 	Map_Ring,	id_Rings,	0,	0,	$27B2
+	dbug 	Map_Sonic,	id_Rings,	0,	0,	$27B2
 	dbug	Map_Monitor,	id_Monitor,	0,	0,	$680
 	dbug	Map_Crab,	id_Crabmeat,	0,	0,	$400
 	dbug	Map_Buzz,	id_BuzzBomber,	0,	0,	$444

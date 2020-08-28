@@ -32,6 +32,8 @@ ym2612_d1:		equ $A04003
 
 security_addr:		equ $A14000
 
+double_jump_flag:	equ	$FFFFF5C0
+
 ; Sound driver constants
 TrackPlaybackControl:	equ 0		; All tracks
 TrackVoiceControl:	equ 1		; All tracks

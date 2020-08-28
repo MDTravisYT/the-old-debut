@@ -70,11 +70,11 @@ ptr_mus89:	dc.l Music89
 ptr_mus8A:	dc.l Music8A
 ptr_mus8B:	dc.l Music8B
 ptr_mus8C:	dc.l Music8C
-ptr_mus8D:	
-ptr_mus8E:	
-ptr_mus8F:	
-ptr_mus90:	
-ptr_mus91:	
+ptr_mus8D:	dc.l Music8D
+ptr_mus8E:	dc.l Music8E
+ptr_mus8F:	dc.l Music8F
+ptr_mus90:	dc.l Music90
+ptr_mus91:	dc.l Music91
 ptr_mus92:	
 ptr_mus93:	
 ptr_musend
@@ -2498,11 +2498,21 @@ Music88:	incbin	"sound/music/Mus89 - Special Stage.bin"
 		even
 Music89:	incbin	"sound/music/Mus8C - Boss.bin"
 		even
-Music8A:	incbin	"sound/music/Mus8B - Ending.bin" ; Title Screen
+Music8A:	incbin	"sound/music/Mus8A - Title Screen.bin" ; Title Screen
 		even
 Music8B:	incbin	"sound/music/Mus8E - Sonic Got Through.bin"
 		even
 Music8C:	incbin	"sound/music/Mus8F - Game Over.bin"
+		even
+Music8D:	incbin	"sound/music/icemountain.bin"
+		even
+Music8E:	incbin	"sound/music/Mus8B - Ending.bin" ; Title Screen
+		even
+Music8F:	incbin	"sound/music/S Monitor.bin"
+		even
+Music90:	incbin	"sound/music/sega2.bin"
+		even
+Music91:	incbin	"sound/music/BossHPLow.bin"
 		even
 ; ---------------------------------------------------------------------------
 ; Sound	effect pointers
@@ -2571,7 +2581,7 @@ SoundA2:	incbin	"sound/sfx/SndA2.bin"
 		even
 SoundA3:	incbin	"sound/sfx/SndA3 - Death.bin"
 		even
-SoundA4:	incbin	"sound/sfx/SndA4 - Skid.bin"
+SoundA4:	incbin	"sound/music/Peelout_Release.bin"
 		even
 SoundA5:	incbin	"sound/sfx/SndA5.bin"
 		even
@@ -2667,14 +2677,14 @@ SoundD0:	incbin	"sound/sfx/SndD0 - Waterfall.bin"
 		if (*&$7FFF)+Size_of_SegaPCM>$8000
 			align $8000
 		endif
-SegaPCM:	even
+SegaPCM:	incbin	"sound/dac/sega.pcm"
 SegaPCM_End
 		even
 
-		if SegaPCM_End-SegaPCM>$8000
-			inform 3,"Sega sound must fit within $8000 bytes, but you have a $%h byte Sega sound.",SegaPCM_End-SegaPCM
-		endc
-		if SegaPCM_End-SegaPCM>Size_of_SegaPCM
-			inform 3,"Size_of_SegaPCM = $%h, but you have a $%h byte Sega sound.",Size_of_SegaPCM,SegaPCM_End-SegaPCM
-		endc
+;		if SegaPCM_End-SegaPCM>$8000
+;			inform 3,"Sega sound must fit within $8000 bytes, but you have a $%h byte Sega sound.",SegaPCM_End-SegaPCM
+;		endc
+;		if SegaPCM_End-SegaPCM>Size_of_SegaPCM
+;			inform 3,"Size_of_SegaPCM = $%h, but you have a $%h byte Sega sound.",Size_of_SegaPCM,SegaPCM_End-SegaPCM
+;		endc
 

@@ -41,14 +41,16 @@ loc_1341C:
 		move.b	#9,obWidth(a0)
 		btst	#2,obStatus(a0)
 		bne.s	loc_13490
-		move.b	#$E,obHeight(a0)
-		move.b	#7,obWidth(a0)
-		move.b    #id_Walk,obAnim(a0) 
-		bset	#2,obStatus(a0)
-		addq.w	#5,obY(a0)
-		cmpi.b	#btnABC,d0	; is A, B or C pressed?
-		bmi.w	locret_1348F	; if yes, branch
-;		move.b    #id_Roll,obAnim(a0) 
+;		move.b	#$E,obHeight(a0)
+;		move.b	#7,obWidth(a0)
+Result_Check:
+        tst.b   ($FFFFF5C0).w ; Has the victory animation flag been set?
+        beq.s   NormalJump ; If not, branch
+        move.b  #$13,$1C(a0) ; Play the victory animation
+        bra.s   cont ; Continue
+NormalJump:
+        move.b  #$1F,$1C(a0)    ; use "jumping"    animation
+cont:
 		
 locret_1348F:
 		rts	
@@ -57,4 +59,10 @@ locret_1348F:
 loc_13490:
 		bset	#4,obStatus(a0)
 		rts	
+;Doublejumpup:
+;		move.b	(v_jpadpress2).w,d0
+;		andi.b	#btnABC,d0	; is A, B or C pressed?
+;        move.b  #$20,$1C(a0)    ; use "jumping"    animation
+;		sfx	sfx_Skid,0,0,0	; play jumping sound
+;		rts
 ; End of function Sonic_Jump

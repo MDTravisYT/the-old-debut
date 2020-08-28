@@ -10,6 +10,7 @@ Sonic_JumpHeight:
 		beq.s	loc_134C4
 		move.w	#-$400,d1
 		btst	#6,obStatus(a0)
+		move.b  #1,double_jump_flag(a0)
 		beq.s	loc_134AE
 		move.w	#-$200,d1
 
@@ -20,6 +21,9 @@ loc_134AE:
 		andi.b	#btnABC,d0	; is A, B or C pressed?
 		bne.s	locret_134C2	; if yes, branch
 		move.w	d1,obVelY(a0)
+		tst.b    double_jump_flag(a0)
+	;	sfx	sfx_Skid,0,0,0
+        move.b  #$21,$1C(a0)    ; use "jumping"    animation
 
 locret_134C2:
 		rts	

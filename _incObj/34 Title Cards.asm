@@ -23,14 +23,22 @@ Card_CheckSBZ3:	; Routine 0
 		move.b	(v_zone).w,d0
 		cmpi.w	#(id_LZ<<8)+3,(v_zone).w ; check if level is SBZ 3
 		bne.s	Card_CheckFZ
-		moveq	#5,d0		; load title card number 5 (SBZ)
+		bne.s	Card_LoadConfig
+		moveq	#1,d0		; load title card number 5 (SBZ)
 
 	Card_CheckFZ:
 		move.w	d0,d2
-		cmpi.w	#(id_SBZ<<8)+2,(v_zone).w ; check if level is FZ
+		cmpi.w	#(6<<8),(v_zone).w ; check if level is FZ
 		bne.s	Card_LoadConfig
-		moveq	#6,d0		; load title card number 6 (FZ)
-		moveq	#$B,d2		; use "FINAL" mappings
+		moveq	#$B,d0		; load title card number 6 (FZ)
+		moveq	#$B,d2		; use "ICE MOUNTAIN" mappings
+;		
+;	Card_CheckIMZ:
+;		move.w	d0,d2
+;		cmpi.w	#$6,(v_zone).w ; check if level is FZ
+;		bne.s	Card_LoadConfig
+;		moveq	#$D,d0		; load title card number 6 (FZ)
+;		moveq	#$B,d2		; use "ICE MOUNTAIN" mappings
 
 	Card_LoadConfig:
 		lea	(Card_ConData).l,a3
@@ -54,7 +62,7 @@ Card_Loop:
 		cmpi.b	#7,d0
 		bne.s	Card_MakeSprite
 		add.b	(v_act).w,d0
-		cmpi.b	#3,(v_act).w
+		cmpi.b	#4,(v_act).w
 		bne.s	Card_MakeSprite
 		subq.b	#1,d0
 
@@ -149,11 +157,12 @@ Card_ItemData:	dc.w $D0	; y-axis position
 ; 4 bytes per item (YYYY XXXX)
 ; 4 items per level (GREEN HILL, ZONE, ACT X, oval)
 ; ---------------------------------------------------------------------------
-Card_ConData:	dc.w 0,	$120, $FEFC, $13C, $414, $154, $214, $154 ; GHZ
-		dc.w 0,	$120, $FEF4, $134, $40C, $14C, $20C, $14C ; LZ
-		dc.w 0,	$120, $FEE0, $120, $3F8, $138, $1F8, $138 ; MZ
-		dc.w 0,	$120, $FEFC, $13C, $414, $154, $214, $154 ; SLZ
-		dc.w 0,	$120, $FF04, $144, $41C, $15C, $21C, $15C ; SYZ
-		dc.w 0,	$120, $FF04, $144, $41C, $15C, $21C, $15C ; SBZ
-		dc.w 0,	$120, $FEE4, $124, $3EC, $3EC, $1EC, $12C ; FZ
+Card_ConData:	dc.w 0,	$120, $FEFC, $13C, $414, $154, $214, $FFFF ; GHZ
+		dc.w 0,	$120, $FEF4, $134, $40C, $14C, $20C, $FFFF ; LZ
+		dc.w 0,	$120, $FEE0, $120, $3F8, $138, $1F8, $FFFF ; MZ
+		dc.w 0,	$120, $FEFC, $13C, $414, $154, $214, $FFFF ; SLZ
+		dc.w 0,	$120, $FF04, $144, $41C, $15C, $21C, $FFFF ; SYZ
+		dc.w 0,	$120, $FF04, $144, $41C, $15C, $21C, $FFFF ; SBZ
+		dc.w 0,	$120, $FEE4, $124, $3EC, $3EC, $1EC, $FFFF ; FZ
+		dc.w 0,	$120, $FF04, $144, $41C, $15C, $21C, $FFFF ; IMZ
 ; ===========================================================================

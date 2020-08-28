@@ -25,12 +25,12 @@ Sonic_Water:
 ;		move.w	#$300,(v_sonspeedmax).w ; change Sonic's top speed
 ;		move.w	#6,(v_sonspeedacc).w ; change Sonic's acceleration
 ;		move.w	#$40,(v_sonspeeddec).w ; change Sonic's deceleration
-;		asr	obVelX(a0)
-;		asr	obVelY(a0)
-;		asr	obVelY(a0)	; slow Sonic
-;		beq.s	@exit		; branch if Sonic stops moving
-;		move.b	#id_Splash,(v_objspace+$300).w ; load splash object
-;		sfx	sfx_Splash,1,0,0	 ; play splash sound
+		asr	obVelX(a0)
+		asr	obVelY(a0)
+		asr	obVelY(a0)	; slow Sonic
+		beq.s	@exit		; branch if Sonic stops moving
+		move.b	#id_Splash,(v_objspace+$300).w ; load splash object
+		sfx	sfx_Splash,1,0,0	 ; play splash sound
 ; ===========================================================================
 
 @abovewater:

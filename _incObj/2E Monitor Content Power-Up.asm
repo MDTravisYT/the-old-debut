@@ -57,7 +57,7 @@ Pow_ChkSonic:
 	ExtraLife:
 		addq.b	#1,(v_lives).w	; add 1 to the number of lives you have
 		addq.b	#1,(f_lifecount).w ; update the lives counter
-		music	bgm_ExtraLife,1,0,0	; play extra life music
+		music	sfx_cash,1,0,0	; play extra life music
 ; ===========================================================================
 
 Pow_ChkShoes:
@@ -102,7 +102,7 @@ Pow_ChkInvinc:
 			cmpi.w	#$C,(v_air).w
 			bls.s	Pow_NoMusic
 		endc
-		music	bgm_Invincible,1,0,0 ; play invincibility music
+		music	$8D,1,0,0 ; play invincibility music
 ; ===========================================================================
 
 Pow_NoMusic:
@@ -115,11 +115,11 @@ Pow_ChkRings:
 
 		addi.w	#10,(v_rings).w	; add 10 rings to the number of rings you have
 		ori.b	#1,(f_ringcount).w ; update the ring counter
-		cmpi.w	#100,(v_rings).w ; check if you have 100 rings
+		cmpi.w	#50,(v_rings).w ; check if you have 100 rings
 		bcs.s	Pow_RingSound
 		bset	#1,(v_lifecount).w
 		beq.w	ExtraLife
-		cmpi.w	#200,(v_rings).w ; check if you have 200 rings
+		cmpi.w	#100,(v_rings).w ; check if you have 200 rings
 		bcs.s	Pow_RingSound
 		bset	#2,(v_lifecount).w
 		beq.w	ExtraLife
@@ -130,8 +130,45 @@ Pow_ChkRings:
 
 Pow_ChkS:
 		cmpi.b	#7,d0		; does monitor contain 'S'?
-		bne.s	Pow_ChkEnd
-		nop	
+		bne.s	Pow_ChkGoggles		; if not, branch to Goggle code
+
+		move.w	#$960,(v_player+$34).w	; time limit for the power-up
+		move.w	#$C00,(v_sonspeedmax).w ; change Sonic's top speed
+		move.w	#$18,(v_sonspeedacc).w	; change Sonic's acceleration
+		move.w	#$80,(v_sonspeeddec).w	; change Sonic's deceleration
+
+		move.b	#1,(v_invinc).w	; make Sonic invincible
+		move.w	#$960,(v_player+$32).w ; time limit for the power-up
+		move.b	#id_ShieldItem,(v_objspace+$200).w ; load stars object ($3801)
+		move.b	#1,(v_objspace+$200+obAnim).w
+		move.b	#id_ShieldItem,(v_objspace+$240).w ; load stars object ($3802)
+		move.b	#2,(v_objspace+$240+obAnim).w
+		move.b	#id_ShieldItem,(v_objspace+$280).w ; load stars object ($3803)
+		move.b	#3,(v_objspace+$280+obAnim).w
+		move.b	#id_ShieldItem,(v_objspace+$2C0).w ; load stars object ($3804)
+		move.b	#4,(v_objspace+$2C0+obAnim).w
+		tst.b	(f_lockscreen).w ; is boss mode on?
+		if Revision=0
+		else
+			cmpi.w	#$C,(v_air).w
+;			bls.s	Pow_NoMusic
+		endc
+		music	$8D,1,0,0 ; play invincibility music
+
+Pow_ChkGoggles:	
+		cmpi.b	#8,d0		; does monitor contain Goggles?
+		bne.s	Pow_ChkSpring		; if not, branch to Pow_ChkEnd
+		move.b	#1,(f_gogglecheck).w ; move 1 to the goggle check
+		music	$AD,1,0,0	; play ring sound
+		move.w	#$4B0,(v_player+$32).w ; time limit for the power-up
+		music	$C2,1,0,0	; play ring sound
+		move.b	#0,(f_gogglecheck).w ; move 0 to the goggle check
+		
+Pow_ChkSpring:	
+		move.b	obAnim(a0),d0
+		cmpi.b	#$A,d0		; does monitor contain Spring?
+		bne.s	Pow_ChkEnd		; if not, branch to Pow_ChkEnd
+		rts
 
 Pow_ChkEnd:
 		rts			; 'S' and goggles monitors do nothing

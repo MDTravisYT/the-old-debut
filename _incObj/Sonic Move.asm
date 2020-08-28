@@ -234,7 +234,7 @@ loc_130BA:
 		bne.s	locret_130E8
 		cmpi.w	#$400,d0
 		blt.s	locret_130E8
-;		move.b	#id_Stop,obAnim(a0) ; use "stopping" animation
+		move.b	#id_Stop,obAnim(a0) ; use "stopping" animation
 		bclr	#0,obStatus(a0)
 ;		sfx	sfx_Skid,0,0,0	; play stopping sound
 
@@ -276,14 +276,14 @@ loc_13118:
 
 loc_13120:
 		move.w	d0,obInertia(a0)
-;		move.b	obAngle(a0),d0
-;		addi.b	#$20,d0
-;		andi.b	#$C0,d0
-;		bne.s	locret_1314E
-;		cmpi.w	#-$400,d0
-;		bgt.s	locret_1314E
-;		move.b	#id_Stop,obAnim(a0) ; use "stopping" animation
-;		bset	#0,obStatus(a0)
+		move.b	obAngle(a0),d0
+		addi.b	#$20,d0
+		andi.b	#$C0,d0
+		bne.s	locret_1314E
+		cmpi.w	#-$400,d0
+		bgt.s	locret_1314E
+		move.b	#id_Stop,obAnim(a0) ; use "stopping" animation
+		bset	#0,obStatus(a0)
 ;		sfx	sfx_Skid,0,0,0	; play stopping sound
 
 locret_1314E:
