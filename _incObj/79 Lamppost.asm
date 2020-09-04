@@ -42,7 +42,7 @@ Lamp_Main:	; Routine 0
 @red:
 		bset	#0,2(a2,d0.w)
 		move.b	#4,obRoutine(a0) ; goto Lamp_Finish next
-		move.b	#3,obFrame(a0)	; use red lamppost frame
+		move.b	#1,obFrame(a0)	; use red lamppost frame
 		rts	
 ; ===========================================================================
 
@@ -62,7 +62,7 @@ Lamp_Blue:	; Routine 2
 		move.b	obRespawnNo(a0),d0
 		bset	#0,2(a2,d0.w)
 		move.b	#4,obRoutine(a0)
-		move.b	#3,obFrame(a0)
+		move.b	#0,obFrame(a0)
 		bra.w	@donothing
 ; ===========================================================================
 
@@ -82,7 +82,7 @@ Lamp_Blue:	; Routine 2
 		addq.b	#2,obRoutine(a0)
 		jsr	(FindFreeObj).l
 		bne.s	@fail
-		move.b	#id_Lamppost,0(a1)	; load twirling	lamp object
+	;	move.b	#id_Lamppost,0(a1)	; load twirling	lamp object
 		move.b	#6,obRoutine(a1) ; goto Lamp_Twirl next
 		move.w	obX(a0),lamp_origX(a1)
 		move.w	obY(a0),lamp_origY(a1)

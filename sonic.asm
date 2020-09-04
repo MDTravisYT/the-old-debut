@@ -2200,7 +2200,7 @@ GM_Title:
 		bsr.w	PalLoad1
 		sfx	$8A,0,1,1	; play title screen music
 		move.b	#0,(f_debugmode).w ; disable debug mode
-		move.w	#$4B9,(v_demolength).w ; run title screen for $178 frames
+		move.w	#$4B9,(v_demolength).w ; run title screen for $4B9 frames
 		lea	(v_objspace+$80).w,a1
 		moveq	#0,d0
 		move.w	#7,d1
