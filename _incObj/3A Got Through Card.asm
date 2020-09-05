@@ -237,7 +237,7 @@ Got_SBZ2:
 		bne.w	DeleteObject
 		addq.b	#2,obRoutine(a0)
 		clr.b	(f_lockctrl).w	; unlock controls
-		music	bgm_FZ,1,0,0	; play FZ music
+		music	$91,1,0,0	; play FZ music
 ; ===========================================================================
 
 loc_C766:	; Routine $10

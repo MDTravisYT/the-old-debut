@@ -8954,7 +8954,7 @@ Level_Index:
 		; SBZ
 		dc.w Level_SBZ1-Level_Index, Level_SBZ1bg-Level_Index, Level_SBZ1bg-Level_Index
 		dc.w Level_SBZ2-Level_Index, Level_SBZ1bg-Level_Index, Level_SBZ1bg-Level_Index
-		dc.w Level_SBZ3-Level_Index, Level_SBZ3bg-Level_Index, byte_6A2F8-Level_Index
+		dc.w Level_SBZ3-Level_Index, Level_SBZ1bg-Level_Index, Level_SBZ1bg-Level_Index
 		dc.w byte_6A2FC-Level_Index, byte_6A2FC-Level_Index, byte_6A2FC-Level_Index
 		zonewarning Level_Index,24
 		; Ending
