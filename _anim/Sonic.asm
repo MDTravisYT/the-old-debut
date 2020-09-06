@@ -32,7 +32,7 @@ ptr_Shrink:	dc.w SonAni_Wait-Ani_Sonic
 ptr_Hurt:	dc.w SonAni_Hurt-Ani_Sonic
 ptr_WaterSlide:	dc.w SonAni_Hurt-Ani_Sonic
 ptr_Null:	dc.w SonAni_Null-Ani_Sonic
-ptr_Float3:	dc.w SonAni_Walk-Ani_Sonic
+ptr_Float3:	dc.w SonAni_Float2-Ani_Sonic
 ptr_Float4:	dc.w SonAni_Float4-Ani_Sonic
 ptr_Jump:	dc.w SonAni_Jump-Ani_Sonic
 ptr_Jump2Roll:	dc.w SonAni_Jump2Roll-Ani_Sonic
