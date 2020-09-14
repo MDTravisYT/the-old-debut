@@ -35,7 +35,7 @@ SolidObject:
 
 	@stand:
 		move.w	d4,d2
-;		bsr.w	MvSonicOnPtfm
+		bsr.w	MvSonicOnPtfmCopy
 		moveq	#0,d4
 		rts	
 ; ===========================================================================
@@ -64,10 +64,38 @@ SolidObject71:
 
 	@stand:
 		move.w	d4,d2
-;		bsr.w	MvSonicOnPtfm
+		bsr.w	MvSonicOnPtfmCopy
 		moveq	#0,d4
 		rts	
 ; ===========================================================================
+
+MvSonicOnPtfmCopy:
+		lea	(v_player).w,a1
+		move.w	obY(a0),d0
+		sub.w	d3,d0
+		bra.s	MvSonic2Copy
+		
+MvSonicOnPtfm2Copy:
+		lea	(v_player).w,a1
+		move.w	obY(a0),d0
+		subi.w	#9,d0
+
+MvSonic2Copy:
+		tst.b	(f_lockmulti).w
+		bmi.s	locret_7B62Copy
+		cmpi.b	#6,(v_player+obRoutine).w
+		bhs.s	locret_7B62Copy
+		tst.w	(v_debuguse).w
+		bne.s	locret_7B62Copy
+		moveq	#0,d1
+		move.b	obHeight(a1),d1
+		sub.w	d1,d0
+		move.w	d0,obY(a1)
+		sub.w	obX(a0),d2
+		sub.w	d2,obX(a1)
+
+locret_7B62Copy:
+		rts	
 
 SolidObject2F:
 		lea	(v_player).w,a1
