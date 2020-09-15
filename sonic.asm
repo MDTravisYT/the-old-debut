@@ -3613,7 +3613,92 @@ Pal_SSCyc2:	incbin	"palette\Cycle - Special Stage 2.bin"
 
 
 SS_BGAnimate:
-	rts
+		move.w	($FFFFF7A0).w,d0
+		bne.s	loc_4BF6
+		move.w	#0,(v_bgscreenposy).w
+		move.w	(v_bgscreenposy).w,(v_bgscrposy_dup).w
+
+loc_4BF6:
+		cmpi.w	#8,d0
+		bhs.s	loc_4C4E
+		cmpi.w	#6,d0
+		bne.s	loc_4C10
+		addq.w	#1,(v_bg3screenposx).w
+		addq.w	#1,(v_bgscreenposy).w
+		move.w	(v_bgscreenposy).w,(v_bgscrposy_dup).w
+
+loc_4C10:
+		moveq	#0,d0
+		move.w	(v_bgscreenposx).w,d0
+		neg.w	d0
+		swap	d0
+		lea	(byte_4CCC).l,a1
+		lea	(v_ngfx_buffer).w,a3
+		moveq	#9,d3
+
+loc_4C26:
+		move.w	2(a3),d0
+		bsr.w	CalcSine
+		moveq	#0,d2
+		move.b	(a1)+,d2
+		muls.w	d2,d0
+		asr.l	#8,d0
+		move.w	d0,(a3)+
+		move.b	(a1)+,d2
+		ext.w	d2
+		add.w	d2,(a3)+
+		dbf	d3,loc_4C26
+		lea	(v_ngfx_buffer).w,a3
+		lea	(byte_4CB8).l,a2
+		bra.s	loc_4C7E
+; ===========================================================================
+
+loc_4C4E:
+		cmpi.w	#$C,d0
+		bne.s	loc_4C74
+		subq.w	#1,(v_bg3screenposx).w
+		lea	($FFFFAB00).w,a3
+		move.l	#$18000,d2
+		moveq	#6,d1
+
+loc_4C64:
+		move.l	(a3),d0
+		sub.l	d2,d0
+		move.l	d0,(a3)+
+		subi.l	#$2000,d2
+		dbf	d1,loc_4C64
+
+loc_4C74:
+		lea	($FFFFAB00).w,a3
+		lea	(byte_4CC4).l,a2
+
+loc_4C7E:
+		lea	(v_hscrolltablebuffer).w,a1
+		move.w	(v_bg3screenposx).w,d0
+		neg.w	d0
+		swap	d0
+		moveq	#0,d3
+		move.b	(a2)+,d3
+		move.w	(v_bgscreenposy).w,d2
+		neg.w	d2
+		andi.w	#$FF,d2
+		lsl.w	#2,d2
+
+loc_4C9A:
+		move.w	(a3)+,d0
+		addq.w	#2,a3
+		moveq	#0,d1
+		move.b	(a2)+,d1
+		subq.w	#1,d1
+
+loc_4CA4:
+		move.l	d0,(a1,d2.w)
+		addq.w	#4,d2
+		andi.w	#$3FC,d2
+		dbf	d1,loc_4CA4
+		dbf	d3,loc_4C9A
+		rts	
+; End of function SS_BGAnimate
 
 ; ===========================================================================
 byte_4CB8:	dc.b 9,	$28, $18, $10, $28, $18, $10, $30, $18,	8, $10,	0
@@ -7991,14 +8076,14 @@ loc_1B350:
 ; End of function SS_AniWallsRings
 
 ; ===========================================================================
-SS_WaRiVramSet:	dc.w $142,$2142, $142, $142, $142, $142, $142, $2142
-		dc.w $142, $2142, $142, $142, $142, $142, $142,$2142
-		dc.w $2142, $142, $2142, $2142,	$2142, $2142, $2142, $142
-		dc.w $2142, $142, $2142, $2142,	$2142, $2142, $2142, $142
-		dc.w $4142, $2142, $4142, $4142, $4142,	$4142, $4142, $2142
-		dc.w $4142, $2142, $4142, $4142, $4142,	$4142, $4142, $2142
-		dc.w $6142, $4142, $6142, $6142, $6142,	$6142, $6142, $4142
-		dc.w $6142, $4142, $6142, $6142, $6142,	$6142, $6142, $4142
+SS_WaRiVramSet:    dc.w $142,$2142, $142, $142, $142, $2142, $142, $142
+        dc.w  $142, $2142, $142,  $142,  $142,  $2142, $142,  $142
+        dc.w $2142,  $142, $2142, $2142, $2142, $142, $2142, $2142
+        dc.w $2142, $142, $2142, $2142, $2142, $142, $2142, $2142
+        dc.w $4142, $2142, $4142, $4142, $4142,    $2142, $4142, $4142
+        dc.w $4142, $2142, $4142, $4142, $4142,    $2142, $4142, $4142
+        dc.w $6142, $4142, $6142, $6142, $6142,    $6142, $4142, $6142
+        dc.w $6142, $4142, $6142, $6142, $6142,    $6142, $4142, $6142
 ; ---------------------------------------------------------------------------
 ; Subroutine to	remove items when you collect them in the special stage
 ; ---------------------------------------------------------------------------
@@ -8462,6 +8547,7 @@ Nem_JapNames:	incbin	"artnem\Hidden Japanese Credits.bin"
 
 Map_Sonic:	include	"_maps\Sonic.asm"
 SonicDynPLC:	include	"_maps\Sonic - Dynamic Gfx Script.asm"
+Map_SonicSS:	include	"_maps\Sonic SS.asm"
 
 ; ---------------------------------------------------------------------------
 ; Uncompressed graphics	- Sonic

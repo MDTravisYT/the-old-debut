@@ -86,6 +86,7 @@ loc_1675E:	; Routine 4
 		bne.s	locret_16796
 		bsr.w	sub_1681C
 		addq.b	#2,obRoutine(a0)
+		move.b	#id_Warp1,obAnim(a1) ; use Sonic's rolling animation
 		sfx	sfx_Teleport,0,0,0	; play teleport sound
 
 locret_16796:
