@@ -2508,7 +2508,7 @@ Music8D:	incbin	"sound/music/icemountain.bin"
 		even
 Music8E:	incbin	"sound/music/Mus8B - Ending.bin" ; Title Screen
 		even
-Music8F:	incbin	"sound/music/S Monitor.bin"
+Music8F:	incbin	"sound/music/Mus87 - Invincibility.bin"
 		even
 Music90:	incbin	"sound/music/sega2.bin"
 		even

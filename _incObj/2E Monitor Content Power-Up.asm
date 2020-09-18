@@ -102,7 +102,7 @@ Pow_ChkInvinc:
 			cmpi.w	#$C,(v_air).w
 			bls.s	Pow_NoMusic
 		endc
-		music	$8D,1,0,0 ; play invincibility music
+		music	$8F,1,0,0 ; play invincibility music
 ; ===========================================================================
 
 Pow_NoMusic:
@@ -153,7 +153,7 @@ Pow_ChkS:
 			cmpi.w	#$C,(v_air).w
 ;			bls.s	Pow_NoMusic
 		endc
-		music	$8D,1,0,0 ; play invincibility music
+		music	$8F,1,0,0 ; play invincibility music
 
 Pow_ChkGoggles:	
 		cmpi.b	#8,d0		; does monitor contain Goggles?

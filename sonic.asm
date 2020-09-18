@@ -8440,7 +8440,7 @@ AddPoints:
 			bmi.s   @noextralife ; branch if Mega Drive is Japanese
 			addq.b  #1,(v_lives).w ; give extra life
 			addq.b  #1,(f_lifecount).w
-			music	bgm_ExtraLife,1,0,0
+			music	sfx_cash,1,0,0
 		endc
 
 @locret_1C6B6:

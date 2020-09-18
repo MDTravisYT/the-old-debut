@@ -23,8 +23,8 @@ Sonic_Loops:
 
 ;		cmp.b	(v_256roll1).w,d1 ; is Sonic on a "roll tunnel" tile?
 ;		beq.w	Sonic_ChkRoll	; if yes, branch
-;		cmp.b	(v_256roll2).w,d1
-;		beq.w	Sonic_ChkRoll
+;;		cmp.b	(v_256roll2).w,d1
+	;	beq.w	Sonic_ChkRoll
 
 		cmp.b	(v_256loop1).w,d1 ; is Sonic on a loop tile?
 		beq.s	@chkifleft	; if yes, branch
