@@ -9005,6 +9005,8 @@ Art_MzLava2:	incbin	"artunc\MZ Lava.bin"
 		even
 Art_MzTorch:	incbin	"artunc\MZ Background Torch.bin"
 		even
+Art_MarbleSaturns:	incbin	"artunc\mzsaturns.bin"	; MZ torch in background
+		even
 Art_SbzSmoke:	incbin	"artunc\SBZ Background Smoke.bin"
 		even
 

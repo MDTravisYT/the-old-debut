@@ -173,7 +173,7 @@ AniArt_MZ_Torch:
 @size:		equ 6	; number of tiles per frame
 
 		subq.b	#1,(v_lani2_time).w ; decrement timer
-		bpl.w	@end		; branch if not 0
+		bpl.w	MarbleSaturns		; branch if not 0
 		
 		move.b	#7,(v_lani2_time).w ; time to display each frame
 		lea	(Art_MzTorch).l,a1 ; load torch	patterns
@@ -186,6 +186,22 @@ AniArt_MZ_Torch:
 		locVRAM	$5E40
 		move.w	#@size-1,d1
 		bra.w	LoadTiles
+		
+MarbleSaturns:
+                subq.b    #1,($FFFFF7B9).w    ; decrement timer
+                bpl.s    @end        ;Branch to an rts if this the last anim routine
+                move.b    #4,($FFFFF7B9).w ; time    to display each    frame for
+                lea    (Art_MarbleSaturns).l,a1 ; load saturns patterns
+                moveq    #0,d0           ;??
+                move.b    ($FFFFF7B8).w,d0
+                addq.b    #1,($FFFFF7B8).w     ; increment frame counter
+                ;andi.w    #6,($FFFFF7B8).w     ; there were 3 frames
+                andi.w    #7,d0                ;Now there are 7???
+                mulu.w    #$100,d0
+                adda.w    d0,a1               ; jump to appropriate tile
+                move.l    #$54400001,($C00004).l ; VRAM address
+                move.w    #7,d1        ; number of 8x8    tiles
+                bra.w    LoadTiles
 
 @end:
 		rts	
