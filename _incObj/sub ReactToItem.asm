@@ -327,19 +327,32 @@ KillSonic:
 		move.w	#0,obVelX(a0)
 		move.w	#0,obInertia(a0)
 		move.w	obY(a0),$38(a0)
-		move.b	#id_Death,obAnim(a0)
+		move.b	#id_Burnt,obAnim(a0)
 		bset	#7,obGfx(a0)
 		move.w	#sfx_Death,d0	; play normal death sound
-		cmpi.b	#id_Spikes,(a2)	; check	if you were killed by spikes
-		bne.s	@sound
-		move.w	#sfx_HitSpikes,d0 ; play spikes death sound
+		cmpi.b	#id_LavaTag,(a2)	; check	if you were killed by spikes
+		bne.s	KillSonicLava
+	;	move.w	#sfx_HitSpikes,d0 ; play spikes death sound
 
-	@sound:
-		jsr	(PlaySound_Special).l
+	;@sound:
+	;	jsr	(PlaySound_Special).l
 
 	@dontdie:
 		moveq	#-1,d0
 		rts	
+		
+KillSonicLava:
+		move.b	#0,(v_invinc).w	; remove invincibility
+		move.b	#6,obRoutine(a0)
+		bsr.w	Sonic_ResetOnFloor
+		bset	#1,obStatus(a0)
+		move.w	#-$700,obVelY(a0)
+		move.w	#0,obVelX(a0)
+		move.w	#0,obInertia(a0)
+		move.w	obY(a0),$38(a0)
+		move.b	#id_Death,obAnim(a0)
+		bset	#7,obGfx(a0)
+		move.w	#$AA,d0	; play normal death sound
 ; End of function KillSonic
 
 

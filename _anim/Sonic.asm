@@ -25,7 +25,7 @@ ptr_Leap1:	dc.w SonAni_Leap1-Ani_Sonic
 ptr_Leap2:	dc.w SonAni_Leap2-Ani_Sonic
 ptr_Surf:	dc.w SonAni_Wait-Ani_Sonic
 ptr_GetAir:	dc.w SonAni_GetAir-Ani_Sonic
-ptr_Burnt:	dc.w SonAni_Wait-Ani_Sonic
+ptr_Burnt:	dc.w SonAni_Burnt-Ani_Sonic
 ptr_Drown:	dc.w SonAni_Drown-Ani_Sonic
 ptr_Death:	dc.w SonAni_Death-Ani_Sonic
 ptr_Shrink:	dc.w SonAni_Wait-Ani_Sonic
@@ -92,7 +92,7 @@ SonAni_Surf:	dc.b $3F, fr_surf, afEnd
 		even
 SonAni_GetAir:	dc.b $B, $27, $27, fr_walk16, afChange, id_Walk
 		even
-SonAni_Burnt:	dc.b $20, fr_burnt, afEnd
+SonAni_Burnt:	dc.b $20, $12, afEnd
 		even
 SonAni_Drown:	dc.b $17, $25, $26, afBack, 1
 		even
