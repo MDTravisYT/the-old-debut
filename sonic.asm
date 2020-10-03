@@ -8868,8 +8868,6 @@ Blk16_GHZ:	incbin	"map16\GHZ.bin"
 		even
 Nem_GHZ:	incbin	"artnem\8x8 - GHZ.bin"	; GHZ primary patterns
 		even
-Nem_IMZ:	incbin	"artnem\8x8 - IMZ.bin"	; IMZ primary patterns
-		even
 Nem_GHZ_1st:	incbin	"artnem\8x8 - GHZ1.bin"	; Title Screen and Ending only
 		even
 Nem_GHZ_2nd:	incbin	"artnem\8x8 - GHZ2.bin"	; Title Screen and Ending only
@@ -8887,6 +8885,12 @@ Blk16_MZ:	incbin	"map16\MZ.bin"
 Nem_MZ:		incbin	"artnem\8x8 - MZ.bin"	; MZ primary patterns
 		even
 Blk256_MZ:	incbin	"map256\MZ.bin"
+		even
+Blk16_IMZ:	incbin	"map16\IMZ.bin"
+		even
+Nem_IMZ:	incbin	"artnem\8x8 - IMZ.bin"	; IMZ primary patterns
+		even
+Blk256_IMZ:	incbin	"map256\IMZ.bin"
 		even
 Blk16_SLZ:	incbin	"map16\SLZ.bin"
 		even

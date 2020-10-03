@@ -150,7 +150,7 @@ AniArt_MZ_Magma:
 		moveq	#0,d3
 		move.b	(v_lani1_frame).w,d3
 		addq.b	#1,(v_lani1_frame).w ; increment frame counter (unused)
-		move.b	(v_oscillate+$A).w,d3 ; get oscillating value
+		move.b	(v_oscillate).w,d3 ; get oscillating value
 		move.w	#3,d2
 
 	@loop:

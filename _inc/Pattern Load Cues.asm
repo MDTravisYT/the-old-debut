@@ -239,28 +239,28 @@ PLC_SBZ2:	dc.w ((PLC_SBZ2end-PLC_SBZ2-2)/6)-1
 	
 PLC_IMZ:	dc.w ((PLC_IMZ2-PLC_IMZ-2)/6)-1
 		plcm	Nem_IMZ, 0		; GHZ main patterns
-		plcm	Nem_Stalk, $6B00	; flower stalk
-		plcm	Nem_Buzz, $8880		; buzz bomber enemy
-		plcm	Nem_Chopper, $8F60	; chopper enemy
-		plcm	Nem_Newtron, $9360	; newtron enemy
-		plcm	Nem_Motobug, $9E00	; motobug enemy
-		plcm	Nem_Spikes, $A360	; spikes
-		plcm	Nem_HSpring, $A460	; horizontal spring
-		plcm	Nem_VSpring, $A660	; vertical spring
+	;	plcm	Nem_Stalk, $6B00	; flower stalk
+	;	plcm	Nem_Buzz, $8880		; buzz bomber enemy
+	;	plcm	Nem_Chopper, $8F60	; chopper enemy
+	;	plcm	Nem_Newtron, $9360	; newtron enemy
+	;	plcm	Nem_Motobug, $9E00	; motobug enemy
+	;	plcm	Nem_Spikes, $A360	; spikes
+	;	plcm	Nem_HSpring, $A460	; horizontal spring
+	;	plcm	Nem_VSpring, $A660	; vertical spring
 		plcm	Nem_Burrobot, $94C0	; blue guy
-		plcm	Nem_Crabmeat, $8840 ; bush
-		plcm	Nem_BallHog, $56E0	; ball hog enemy
+	;	plcm	Nem_Crabmeat, $8840 ; bush
+	;	plcm	Nem_BallHog, $56E0	; ball hog enemy
 
 PLC_IMZ2:	dc.w ((PLC_IMZ2end-PLC_IMZ2-2)/6)-1
-		plcm	Nem_Swing, $7000	; swinging platform
-		plcm	Nem_Bridge, $71C0	; bridge
-		plcm	Nem_SpikePole, $7300	; spiked pole
-		plcm	Nem_Ball, $7540		; giant	ball
-		plcm	Nem_GhzWall1, $A1E0	; breakable wall
-		plcm	Nem_GhzWall2, $6980	; normal wall
-		plcm	Nem_Pylon, $7980	; foreground trees and stuff
-		plcm	Nem_PplRock, $A0C0	; purple rock
-		plcm	Nem_Motobug, $9E00	; motobug enemy
+	;	plcm	Nem_Swing, $7000	; swinging platform
+	;	plcm	Nem_Bridge, $71C0	; bridge
+	;	plcm	Nem_SpikePole, $7300	; spiked pole
+	;	plcm	Nem_Ball, $7540		; giant	ball
+	;	plcm	Nem_GhzWall1, $A1E0	; breakable wall
+	;	plcm	Nem_GhzWall2, $6980	; normal wall
+	;	plcm	Nem_Pylon, $7980	; foreground trees and stuff
+	;	plcm	Nem_PplRock, $A0C0	; purple rock
+	;	plcm	Nem_Motobug, $9E00	; motobug enemy
 	PLC_IMZ2end:
 ; ---------------------------------------------------------------------------
 ; Pattern load cues - title card
@@ -439,6 +439,8 @@ plcid_LZ:		equ (ptr_PLC_LZ-ArtLoadCues)/2		; 6
 plcid_LZ2:		equ (ptr_PLC_LZ2-ArtLoadCues)/2		; 7
 plcid_MZ:		equ (ptr_PLC_MZ-ArtLoadCues)/2		; 8
 plcid_MZ2:		equ (ptr_PLC_MZ2-ArtLoadCues)/2		; 9
+plcid_IMZ:		equ (ptr_PLC_IMZ-ArtLoadCues)/2		; 4
+plcid_IMZ2:		equ (ptr_PLC_IMZ2-ArtLoadCues)/2		; 4
 plcid_SLZ:		equ (ptr_PLC_SLZ-ArtLoadCues)/2		; $A
 plcid_SLZ2:		equ (ptr_PLC_SLZ2-ArtLoadCues)/2	; $B
 plcid_SYZ:		equ (ptr_PLC_SYZ-ArtLoadCues)/2		; $C
