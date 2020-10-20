@@ -2163,10 +2163,10 @@ GM_Title:
 		bsr.w	LevelSizeLoad
 		bsr.w	DeformLayers
 		lea	(v_16x16).w,a1
-		lea	(Blk16_LZ).l,a0 ; load	GHZ 16x16 mappings
+		lea	(Blk16_GHZ).l,a0 ; load	GHZ 16x16 mappings
 		move.w	#0,d0
 		bsr.w	EniDec
-		lea	(Blk256_LZ).l,a0 ; load GHZ 256x256 mappings
+		lea	(Blk256_GHZ).l,a0 ; load GHZ 256x256 mappings
 		lea	(v_256x256).l,a1
 		move.w	#$0000,$FFFE10
 		bsr.w	KosDec
