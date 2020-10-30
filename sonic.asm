@@ -6049,22 +6049,24 @@ Map_Got:	dc.w M_Got_SonicHas-Map_Got
 		dc.w M_Card_Act1-Map_Got
 		dc.w M_Card_Act2-Map_Got
 		dc.w M_Card_Act3-Map_Got
-M_Got_SonicHas:	dc.b 8			; SONIC HAS
-		dc.b $F8, 5, 0,	$3E, $B8
-		dc.b $F8, 5, 0,	$32, $C8
-		dc.b $F8, 5, 0,	$2E, $D8
-		dc.b $F8, 1, 0,	$20, $E8
-		dc.b $F8, 5, 0,	8, $F0
-		dc.b $F8, 5, 0,	$1C, $10
-		dc.b $F8, 5, 0,	0, $20
-		dc.b $F8, 5, 0,	$3E, $30
-M_Got_Passed:	dc.b 6	;  PASSED | PASSED
-		dc.b $F8, 5, 0, $36, $D0	; P
-		dc.b $F8, 5, 0, 0, $E0		; A
-		dc.b $F8, 5, 0, $3E, $F0	; S
-		dc.b $F8, 5, 0, $3E, $0	; S
-		dc.b $F8, 5, 0, $10, $10	; E
-		dc.b $F8, 5, 0, $0C, $20	; D
+M_Got_SonicHas:	dc.b 5	;  SONIC HAS |     SONIC
+		dc.b $F8, 5, 0, $3E, $D0	; S
+		dc.b $F8, 5, 0, $32, $E0	; O
+		dc.b $F8, 5, 0, $2E, $F0	; N
+		dc.b $F8, 1, 0, $20, $0	; I
+		dc.b $F8, 5, 0, 8, $8		; C
+M_Got_Passed:	dc.b $B	;  PASSED | ROUND CLEARZ
+		dc.b $F8, 5, 0, $3A, $A0	; R
+		dc.b $F8, 5, 0, $32, $B0	; O
+		dc.b $F8, 5, 0, $46, $C0	; U
+		dc.b $F8, 5, 0, $2E, $D0	; N
+		dc.b $F8, 5, 0, $0C, $E0	; D
+		dc.b $F8, 5, 0, 8, $0		; C
+		dc.b $F8, 5, 0, $26, $10	; L
+		dc.b $F8, 5, 0, $10, $20	; E
+		dc.b $F8, 5, 0, 0, $30		; A
+		dc.b $F8, 5, 0, $3A, $40	; R
+		dc.b $F8, 5, 0, $4E, $50	; Z
 M_Got_Score:	dc.b 6			; SCORE
 		dc.b $F8, $D, 1, $4A, $B0
 		dc.b $F8, 1, 1,	$62, $D0
