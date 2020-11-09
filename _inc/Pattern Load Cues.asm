@@ -81,7 +81,8 @@ PLC_GameOver:	dc.w ((PLC_GameOverend-PLC_GameOver-2)/6)-1
 ; Pattern load cues - Green Hill
 ; ---------------------------------------------------------------------------
 PLC_GHZ:	dc.w ((PLC_GHZ2-PLC_GHZ-2)/6)-1
-		plcm	Nem_GHZ, 0		; GHZ main patterns
+		plcm	Nem_GHZ_1st, 0		; GHZ main patterns
+		plcm	Nem_GHZ_2nd, $39A0	; GHZ secondary	patterns
 	;	plcm	Nem_Stalk, $6B00	; flower stalk
 		plcm	Nem_Buzz, $8880		; buzz bomber enemy
 		plcm	Nem_Chopper, $8F60	; chopper enemy

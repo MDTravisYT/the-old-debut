@@ -2188,7 +2188,7 @@ GM_Title:
 		copyTilemap	$FF0000,$C208,$21,$15
 
 		locVRAM	0
-		lea	(Nem_GHZ_1st).l,a0 ; load GHZ patterns
+		lea	(Nem_GHZ).l,a0 ; load GHZ patterns
 		bsr.w	NemDec
 		moveq	#palid_Title,d0	; load title screen palette
 		bsr.w	PalLoad1
@@ -9022,8 +9022,8 @@ Art_SbzSmoke:	incbin	"artunc\SBZ Background Smoke.bin"
 Level_Index:
 		; GHZ
 		dc.w Level_GHZ1-Level_Index, Level_GHZbg-Level_Index, byte_68D70-Level_Index
-		dc.w Level_GHZ2-Level_Index, Level_GHZbg-Level_Index, byte_68E3C-Level_Index
-		dc.w Level_GHZ3-Level_Index, Level_GHZbg-Level_Index, byte_68F84-Level_Index
+		dc.w Level_GHZ2-Level_Index, Level_GHZ2bg-Level_Index, byte_68E3C-Level_Index
+		dc.w Level_GHZ3-Level_Index, Level_GHZ3bg-Level_Index, byte_68F84-Level_Index
 		dc.w byte_68F88-Level_Index, byte_68F88-Level_Index, byte_68F88-Level_Index
 		; LZ
 		dc.w Level_LZ1-Level_Index, Level_LZbg-Level_Index, byte_69190-Level_Index
@@ -9066,6 +9066,10 @@ byte_68E3C:	dc.b 0,	0, 0, 0
 Level_GHZ3:	incbin	"levels\ghz3.bin"
 		even
 Level_GHZbg:	incbin	"levels\ghzbg.bin"
+		even
+Level_GHZ2bg:	incbin	"levels\ghz2bg.bin"
+		even
+Level_GHZ3bg:	incbin	"levels\ghz3bg.bin"
 		even
 byte_68F84:	dc.b 0,	0, 0, 0
 byte_68F88:	dc.b 0,	0, 0, 0
