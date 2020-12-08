@@ -81,7 +81,7 @@ loc_12F70:
 Sonic_LookUp:
 		btst	#bitUp,(v_jpadhold2).w ; is up being pressed?
 		beq.s	Sonic_Duck	; if not, branch
-	;	move.b	#id_LookUp,obAnim(a0) ; use "looking up" animation
+		move.b	#id_LookUp,obAnim(a0) ; use "looking up" animation
 	;	cmpi.w	#$C8,(v_lookshift).w
 	;	beq.s	loc_12FC2
 	;	addq.w	#2,(v_lookshift).w

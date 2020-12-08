@@ -10,7 +10,7 @@ ptr_Roll2:	dc.w SonAni_Roll2-Ani_Sonic
 ptr_Push:	dc.w SonAni_Push-Ani_Sonic
 ptr_Wait:	dc.w SonAni_Wait-Ani_Sonic
 ptr_Balance:	dc.w SonAni_Balance-Ani_Sonic
-ptr_LookUp:	dc.w SonAni_Wait-Ani_Sonic
+ptr_LookUp:	dc.w SonAni_LookUp-Ani_Sonic
 ptr_Duck:	dc.w SonAni_Wait-Ani_Sonic
 ptr_Warp1:	dc.w SonAni_Warp1-Ani_Sonic
 ptr_Warp2:	dc.w SonAni_Wait-Ani_Sonic
@@ -62,7 +62,7 @@ SonAni_Wait:	dc.b   7,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  
 		even
 SonAni_Balance:	dc.b $1F, $2E, $2F, afEnd
 		even
-SonAni_LookUp:	dc.b $17, $14, $15, $5, $15, $16, afBack, 1
+SonAni_LookUp:	dc.b $17, $35, afBack, 1
 		even
 SonAni_Duck:	dc.b $17, 1, afEnd
 		even

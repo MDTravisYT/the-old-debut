@@ -43,7 +43,7 @@ HUD_Update:
 		beq.s	TimeOver	; if yes, branch
 
 		addq.b	#1,-(a1)	; increment 1/60s counter
-		cmpi.b	#60,(a1)	; check if passed 60
+		cmpi.b	#240,(a1)	; check if passed 60
 		bcs.s	@chklives
 		move.b	#0,(a1)
 		addq.b	#1,-(a1)	; increment second counter
@@ -51,7 +51,7 @@ HUD_Update:
 		bcs.s	@updatetime
 		move.b	#0,(a1)
 		addq.b	#1,-(a1)	; increment minute counter
-		cmpi.b	#9,(a1)		; check if passed 9
+		move.b	#9,(a1)		; check if passed 9
 		bcs.s	@updatetime
 		move.b	#9,(a1)		; keep as 9
 
